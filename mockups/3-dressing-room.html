@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Armoire — Direction 3: The Dressing Room (dark luxe)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --aub:#241722; --plum:#3B2436; --gold:#D8BE8A; --blush:#C9A9A6; --candle:#F3E9DC;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#1A1016;font-family:Jost,sans-serif;color:var(--candle);padding:48px}
+  .stage{display:flex;gap:56px;justify-content:center;align-items:flex-start}
+  .unit{display:flex;flex-direction:column;gap:14px;align-items:center}
+  .unit>span{font-size:13px;letter-spacing:.08em;color:#9b8a93}
+  .phone{width:375px;height:812px;background:linear-gradient(170deg,#2B1B28 0%, #241722 55%, #1F1320 100%);
+    border-radius:44px;overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,.55), 0 0 0 10px #0e080d;display:flex;flex-direction:column}
+  .status{display:flex;justify-content:space-between;padding:14px 28px 6px;font-size:13px;font-weight:400;color:var(--blush)}
+  .mrc{font-family:Marcellus,serif}
+
+  .head{ text-align:center;padding:12px 22px 0}
+  .head h1{font-family:Marcellus,serif;font-size:21px;letter-spacing:.42em;text-indent:.42em;color:var(--gold)}
+  .head .deco{display:flex;align-items:center;gap:10px;margin-top:10px}
+  .head .deco::before,.head .deco::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .head .deco::after{background:linear-gradient(90deg,var(--gold),transparent)}
+  .head .deco i{width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+  .head p{font-size:12px;color:var(--blush);margin-top:9px;font-weight:300;letter-spacing:.06em}
+
+  .vibes{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;padding:16px 24px 0}
+  .vibes a{border:1px solid rgba(216,190,138,.4);border-radius:2px;padding:7px 14px;font-size:12.5px;
+    color:var(--blush);text-decoration:none;letter-spacing:.05em}
+  .vibes a.on{border-color:var(--gold);color:var(--gold);background:rgba(216,190,138,.08)}
+
+  .mirror{margin:20px 44px 0;position:relative;height:378px;
+    border:1.5px solid var(--gold);border-radius:140px 140px 8px 8px;
+    box-shadow:inset 0 0 0 5px var(--plum), inset 0 0 0 6.5px rgba(216,190,138,.55), 0 10px 40px rgba(0,0,0,.35);
+    background:radial-gradient(120% 90% at 50% 8%, #462B40 0%, var(--plum) 60%)}
+  .mirror svg{position:absolute;stroke:var(--gold);fill:none;stroke-width:2.2}
+  .mirror .lbl{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-family:Marcellus,serif;
+    font-size:13px;letter-spacing:.28em;text-indent:.28em;color:var(--gold)}
+  .say{margin:16px 34px 0;text-align:center}
+  .say p{font-size:14.5px;line-height:1.55;font-weight:300;color:var(--candle)}
+  .say p b{color:var(--gold);font-weight:400}
+  .acts{margin:auto 30px 26px;display:flex;flex-direction:column;gap:12px;padding-top:14px}
+  .wear{background:var(--gold);color:var(--aub);border:0;border-radius:2px;padding:15px;font-size:13.5px;
+    letter-spacing:.22em;font-family:Jost;font-weight:500}
+  .row2{display:flex;justify-content:center;gap:26px;font-size:13px;letter-spacing:.04em}
+  .row2 a{color:var(--blush);text-decoration:none;border-bottom:1px solid rgba(201,169,166,.5);padding-bottom:2px}
+
+  /* closet racks */
+  .rackwrap{flex:1;overflow:hidden}
+  .rack{margin-top:16px}
+  .rack h5{display:flex;align-items:center;gap:12px;padding:0 24px;font-size:12px;font-weight:400;
+    letter-spacing:.18em;color:var(--gold);font-family:Marcellus,serif}
+  .rack h5::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(216,190,138,.5),transparent)}
+  .cards{display:flex;gap:10px;padding:12px 24px 2px}
+  .card{flex:1;background:var(--plum);border:1px solid rgba(216,190,138,.35);border-radius:60px 60px 4px 4px;
+    padding:16px 6px 10px;text-align:center;position:relative}
+  .card svg{stroke:var(--gold);fill:none;stroke-width:2;height:52px;width:100%}
+  .card h4{font-size:11px;margin-top:7px;font-weight:400;color:var(--candle)}
+  .card small{font-size:9.5px;color:var(--blush);letter-spacing:.04em}
+  .card.dirty{opacity:.45}
+  .card.dirty small{color:#D89A8E;font-style:italic}
+  .fab{position:absolute;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;
+    border:1px solid var(--gold);color:var(--gold);background:rgba(216,190,138,.06);
+    font-size:26px;display:flex;align-items:center;justify-content:center;font-weight:300}
+  .wrap{position:relative;flex:1;display:flex;flex-direction:column}
+
+  /* laundry */
+  .hamp{ text-align:center;padding:22px 26px 0}
+  .hamp h2{font-family:Marcellus,serif;font-size:26px;letter-spacing:.14em;text-indent:.14em;color:var(--candle)}
+  .hamp p{font-size:12.5px;color:var(--blush);margin-top:7px;font-weight:300}
+  .hgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:20px 24px}
+  .hcell{background:var(--plum);border:1px solid rgba(216,190,138,.3);border-radius:4px;
+    padding:13px 6px 9px;text-align:center;position:relative}
+  .hcell svg{stroke:var(--gold);fill:none;stroke-width:2;height:50px;width:100%}
+  .hcell h4{font-size:11px;margin-top:6px;font-weight:400}
+  .hcell small{font-size:9.5px;color:var(--blush)}
+  .hcell .tick{position:absolute;top:7px;right:7px;width:17px;height:17px;transform:rotate(45deg);
+    border:1px solid var(--gold)}
+  .hcell.sel .tick{background:var(--gold)}
+  .hcell.sel{border-color:var(--gold)}
+  .hfoot{margin:auto 30px 26px;text-align:center}
+  .hfoot .wear{width:100%}
+  .hfoot p{font-size:12px;color:var(--blush);margin-top:12px;font-weight:300}
+</style>
+</head>
+<body>
+<svg width="0" height="0"><defs>
+  <g id="cami"><path d="M14 6 q2 10 10 13 v25 h24 v-25 q8-3 10-13 M24 6 l8 8 8-8" transform="translate(16,6)"/></g>
+  <g id="skirt"><path d="M24 4 h28 l10 44 q-24 8-48 0 z M24 4 q14 5 28 0" transform="translate(12,4)"/></g>
+  <g id="blazer"><path d="M22 6 l-12 8 4 34 h10 v-24 m24-18 l12 8-4 34 h-10 v-24 M22 6 l14 14 14-14 M36 20 v28" transform="translate(14,4)"/></g>
+  <g id="heel"><path d="M8 34 q20-18 40-12 l6 8 -4 4 h-28 l-14 6 z M46 30 l4 12" transform="translate(14,10)"/></g>
+  <g id="bag"><rect x="24" y="24" width="32" height="24" rx="2"/><path d="M32 24 q8-12 16 0 M24 32 h32"/></g>
+  <g id="drops"><path d="M28 18 v8 M52 18 v8"/><circle cx="28" cy="16" r="2.5"/><circle cx="52" cy="16" r="2.5"/><path d="M28 26 q-7 8 0 16 q7-8 0-16 M52 26 q-7 8 0 16 q7-8 0-16"/></g>
+  <g id="jeans"><path d="M26 4 h28 l4 48 h-12 l-6-30 -6 30 h-12 z M26 10 h28" transform="translate(10,2)"/></g>
+  <g id="dress"><path d="M28 4 q0 8 6 10 l-8 36 q14 6 28 0 l-8-36 q6-2 6-10 M28 4 q12 5 24 0" transform="translate(12,2)"/></g>
+</defs></svg>
+
+<div class="stage">
+
+  <!-- TODAY -->
+  <div class="unit"><span>TODAY</span>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>􀙇 􀛨</span></div>
+      <div class="head">
+        <h1>ARMOIRE</h1>
+        <div class="deco"><i></i></div>
+        <p>Tuesday · 61° after dark · Boulder</p>
+      </div>
+      <nav class="vibes"><a>Work</a><a>Brunch</a><a class="on">Date night</a><a>Cozy</a><a>Out out</a></nav>
+      <div class="mirror">
+        <svg style="left:96px;top:52px;width:100px;height:82px"><use href="#cami"/></svg>
+        <svg style="left:196px;top:44px;width:72px;height:60px"><use href="#drops"/></svg>
+        <svg style="left:56px;top:120px;width:108px;height:96px"><use href="#blazer"/></svg>
+        <svg style="left:168px;top:132px;width:104px;height:92px"><use href="#skirt"/></svg>
+        <svg style="left:64px;top:236px;width:104px;height:78px"><use href="#heel"/></svg>
+        <svg style="left:186px;top:238px;width:86px;height:74px"><use href="#bag"/></svg>
+        <span class="lbl">TONIGHT'S LOOK</span>
+      </div>
+      <div class="say">
+        <p>The <b>velvet blazer</b> over your <b>satin cami</b>, satin skirt to match. <b>Strappy heels</b>, the gold drops, your little box bag. Merlot lips.</p>
+      </div>
+      <div class="acts">
+        <button class="wear">DRESS ME</button>
+        <div class="row2"><a>Swap a piece</a><a>Show another</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSET -->
+  <div class="unit"><span>CLOSET</span>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>􀙇 􀛨</span></div>
+      <div class="head">
+        <h1>ARMOIRE</h1>
+        <div class="deco"><i></i></div>
+        <p>34 pieces · 27 ready to wear</p>
+      </div>
+      <div class="wrap">
+        <div class="rackwrap">
+          <div class="rack">
+            <h5>TOPS</h5>
+            <div class="cards">
+              <div class="card"><svg><use href="#cami"/></svg><h4>satin cami</h4><small>ready</small></div>
+              <div class="card dirty"><svg><use href="#cami"/></svg><h4>baby tee</h4><small>at the cleaners</small></div>
+              <div class="card"><svg><use href="#blazer"/></svg><h4>velvet blazer</h4><small>ready</small></div>
+            </div>
+          </div>
+          <div class="rack">
+            <h5>BOTTOMS</h5>
+            <div class="cards">
+              <div class="card"><svg><use href="#skirt"/></svg><h4>satin skirt</h4><small>ready</small></div>
+              <div class="card"><svg><use href="#jeans"/></svg><h4>vintage Levi's</h4><small>2 wears left</small></div>
+              <div class="card dirty"><svg><use href="#jeans"/></svg><h4>trousers</h4><small>at the cleaners</small></div>
+            </div>
+          </div>
+          <div class="rack">
+            <h5>DRESSES</h5>
+            <div class="cards">
+              <div class="card"><svg><use href="#dress"/></svg><h4>black midi</h4><small>ready</small></div>
+              <div class="card dirty"><svg><use href="#dress"/></svg><h4>slip dress</h4><small>at the cleaners</small></div>
+              <div class="card"><svg><use href="#dress"/></svg><h4>knit dress</h4><small>ready</small></div>
+            </div>
+          </div>
+          <div class="rack">
+            <h5>SHOES &amp; JEWELS</h5>
+            <div class="cards">
+              <div class="card"><svg><use href="#heel"/></svg><h4>strappy heels</h4><small>ready</small></div>
+              <div class="card"><svg><use href="#bag"/></svg><h4>box bag</h4><small>ready</small></div>
+              <div class="card"><svg><use href="#drops"/></svg><h4>gold drops</h4><small>ready</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="fab">+</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAUNDRY -->
+  <div class="unit"><span>LAUNDRY</span>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>􀙇 􀛨</span></div>
+      <div class="wrap">
+        <div class="hamp">
+          <h2>The Hamper</h2>
+          <p>Seven pieces waiting — mark what you washed</p>
+        </div>
+        <div class="hgrid">
+          <div class="hcell sel"><span class="tick"></span><svg><use href="#cami"/></svg><h4>baby tee</h4><small>worn Sun</small></div>
+          <div class="hcell sel"><span class="tick"></span><svg><use href="#jeans"/></svg><h4>trousers</h4><small>3 wears</small></div>
+          <div class="hcell"><span class="tick"></span><svg><use href="#dress"/></svg><h4>slip dress</h4><small>worn Fri</small></div>
+          <div class="hcell sel"><span class="tick"></span><svg><use href="#cami"/></svg><h4>black cami</h4><small>worn Thu</small></div>
+          <div class="hcell"><span class="tick"></span><svg><use href="#blazer"/></svg><h4>hoodie</h4><small>5 wears</small></div>
+          <div class="hcell sel"><span class="tick"></span><svg><use href="#skirt"/></svg><h4>tennis skirt</h4><small>worn Wed</small></div>
+        </div>
+        <div class="hfoot">
+          <button class="wear">FRESH AGAIN · 4 PIECES</button>
+          <p>Last wash — Sunday evening</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

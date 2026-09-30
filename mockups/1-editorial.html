@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Armoire — Direction 1: The Look (editorial)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400;1,6..96,600&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F6F4EE; --ink:#141210; --red:#C1121F; --grey:#8A857C; --line:#D8D4CA;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#E9E7E2;font-family:Archivo,sans-serif;color:var(--ink);padding:48px}
+  .stage{display:flex;gap:56px;justify-content:center;align-items:flex-start}
+  .unit{display:flex;flex-direction:column;gap:14px;align-items:center}
+  .unit>span{font-size:13px;letter-spacing:.08em;color:#6d6a63}
+  .phone{width:375px;height:812px;background:var(--ivory);border-radius:44px;overflow:hidden;
+    box-shadow:0 24px 60px rgba(20,18,16,.22), 0 0 0 10px #17150f;display:flex;flex-direction:column}
+  .status{display:flex;justify-content:space-between;padding:14px 28px 6px;font-size:13px;font-weight:500}
+  .serif{font-family:"Bodoni Moda",serif}
+
+  .masthead{text-align:center;padding:10px 0 14px;border-bottom:1px solid var(--ink);margin:0 22px}
+  .masthead h1{font-family:"Bodoni Moda",serif;font-weight:600;font-size:26px;letter-spacing:.34em;text-indent:.34em}
+  .masthead p{font-size:11px;color:var(--grey);margin-top:3px;letter-spacing:.04em}
+
+  /* ------- screen 1: today ------- */
+  .vibes{display:flex;gap:18px;justify-content:center;padding:16px 0 4px;font-size:14px}
+  .vibes a{color:var(--grey);text-decoration:none;padding-bottom:3px}
+  .vibes a.on{color:var(--ink);border-bottom:2px solid var(--red)}
+  .looknum{text-align:center;margin-top:14px}
+  .looknum em{font-family:"Bodoni Moda",serif;font-style:italic;font-size:34px}
+  .looknum small{display:block;font-size:11px;color:var(--grey);margin-top:2px;letter-spacing:.12em}
+  .plate{position:relative;height:330px;margin:8px 26px 0}
+  .plate svg{position:absolute;stroke:var(--ink);fill:none;stroke-width:2.5}
+  .cap{margin:10px 34px 0;text-align:center}
+  .cap p{font-family:"Bodoni Moda",serif;font-size:15.5px;line-height:1.55}
+  .cap p b{font-weight:600}
+  .tip{font-size:12.5px;color:var(--grey);text-align:center;margin-top:8px;font-style:italic;font-family:"Bodoni Moda",serif}
+  .acts{margin:auto 26px 26px;display:flex;flex-direction:column;gap:12px}
+  .wear{background:var(--ink);color:var(--ivory);text-align:center;padding:15px;font-size:14px;letter-spacing:.18em;border:0}
+  .row2{display:flex;justify-content:center;gap:26px;font-size:14px}
+  .row2 a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+  /* ------- screen 2: closet ------- */
+  .tabs{display:flex;gap:16px;overflow:hidden;padding:16px 22px 0;font-size:14px;white-space:nowrap}
+  .tabs a{color:var(--grey);text-decoration:none;padding-bottom:6px}
+  .tabs a.on{color:var(--ink);border-bottom:2px solid var(--red)}
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);margin:14px 22px;border:1px solid var(--line)}
+  .cell{background:var(--ivory);padding:14px 8px 10px;text-align:center;position:relative}
+  .cell svg{stroke:var(--ink);fill:none;stroke-width:2.2;height:64px;width:100%}
+  .cell h4{font-family:"Bodoni Moda",serif;font-weight:400;font-size:12.5px;margin-top:8px}
+  .cell small{font-size:10.5px;color:var(--grey)}
+  .cell.dirty svg{opacity:.28}
+  .cell.dirty small{color:var(--red);font-style:italic}
+  .count{font-size:12px;color:var(--grey);text-align:center}
+  .fab{position:absolute;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:var(--ink);color:var(--ivory);
+    font-size:26px;display:flex;align-items:center;justify-content:center;font-weight:300}
+  .wrap{position:relative;flex:1;display:flex;flex-direction:column}
+
+  /* ------- screen 3: laundry ------- */
+  .washhead{text-align:center;margin-top:26px}
+  .washhead em{font-family:"Bodoni Moda",serif;font-style:italic;font-size:38px}
+  .washhead p{font-size:13px;color:var(--grey);margin-top:6px}
+  .washgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);margin:22px;border:1px solid var(--line)}
+  .washgrid .cell .tick{position:absolute;top:7px;right:7px;width:17px;height:17px;border:1.5px solid var(--ink);border-radius:50%;
+    font-size:11px;line-height:15px;color:var(--ivory)}
+  .washgrid .cell.sel .tick{background:var(--ink)}
+  .washgrid .cell svg{opacity:1}
+  .washfoot{margin:auto 26px 26px;text-align:center}
+  .washfoot .wear{width:100%}
+  .washfoot p{font-size:12px;color:var(--grey);margin-top:12px;font-style:italic;font-family:"Bodoni Moda",serif}
+</style>
+</head>
+<body>
+<svg width="0" height="0"><defs>
+  <g id="tank"><path d="M12 4 q0 10 8 14 v26 h24 v-26 q8-4 8-14 M20 4 q6 6 12 6 t12-6" transform="translate(18,6)"/></g>
+  <g id="skirt"><path d="M24 4 h28 l10 44 q-24 8-48 0 z M24 4 q14 5 28 0" transform="translate(12,4)"/></g>
+  <g id="jacket"><path d="M22 6 l-12 8 4 34 h10 v-24 m24-18 l12 8-4 34 h-10 v-24 M22 6 q10 8 20 0 M30 14 v34 M40 14 v34" transform="translate(14,4)"/></g>
+  <g id="heel"><path d="M8 34 q20-18 40-12 l6 8 -4 4 h-28 l-14 6 z M46 30 l4 12" transform="translate(14,10)"/></g>
+  <g id="bag"><rect x="20" y="20" width="40" height="30" rx="3"/><path d="M30 20 q10-16 20 0"/></g>
+  <g id="hoops"><circle cx="28" cy="36" r="12"/><circle cx="52" cy="36" r="12"/><circle cx="28" cy="21" r="3"/><circle cx="52" cy="21" r="3"/></g>
+  <g id="jeans"><path d="M26 4 h28 l4 48 h-12 l-6-30 -6 30 h-12 z M26 10 h28" transform="translate(10,2)"/></g>
+  <g id="dress"><path d="M28 4 q0 8 6 10 l-8 36 q14 6 28 0 l-8-36 q6-2 6-10 M28 4 q12 5 24 0" transform="translate(12,2)"/></g>
+  <g id="knit"><path d="M20 8 l-10 6 4 12 6-2 v24 h40 v-24 l6 2 4-12 -10-6 q-20 10-40 0 M28 24 h24 M28 32 h24 M28 40 h24" transform="translate(10,2)"/></g>
+</defs></svg>
+
+<div class="stage">
+
+  <!-- TODAY -->
+  <div class="unit"><span>TODAY</span>
+    <div class="phone">
+      <div class="status"><b>9:41</b><span>􀙇 􀛨</span></div>
+      <div class="masthead"><h1>ARMOIRE</h1><p>Tuesday 29 September · 68° partly sunny · Boulder</p></div>
+      <nav class="vibes"><a>Work</a><a class="on">Brunch</a><a>Date</a><a>Cozy</a><a>Out</a></nav>
+      <div class="looknum"><em>Look № 3</em><small>FOR BRUNCH WITH THE GIRLS</small></div>
+      <div class="plate">
+        <svg style="left:120px;top:0;width:120px;height:90px"><use href="#tank"/></svg>
+        <svg style="left:250px;top:8px;width:90px;height:70px"><use href="#hoops"/></svg>
+        <svg style="left:118px;top:95px;width:125px;height:115px"><use href="#skirt"/></svg>
+        <svg style="left:18px;top:60px;width:110px;height:100px"><use href="#jacket"/></svg>
+        <svg style="left:36px;top:215px;width:110px;height:80px"><use href="#heel"/></svg>
+        <svg style="left:215px;top:205px;width:110px;height:95px"><use href="#bag"/></svg>
+      </div>
+      <div class="cap"><p>The <b>silk slip skirt</b> with your <b>grey ribbed tank</b> — the <b>denim jacket</b> answers the patio chill. Gold hoops, black slingbacks, the little black bag.</p></div>
+      <p class="tip">Front-tuck the tank, push the sleeves. Done.</p>
+      <div class="acts">
+        <button class="wear">WEAR IT</button>
+        <div class="row2"><a>Swap a piece</a><a>Show me another</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSET -->
+  <div class="unit"><span>CLOSET</span>
+    <div class="phone">
+      <div class="status"><b>9:41</b><span>􀙇 􀛨</span></div>
+      <div class="masthead"><h1>ARMOIRE</h1><p>34 pieces · 27 ready to wear</p></div>
+      <div class="wrap">
+        <nav class="tabs"><a class="on">All</a><a>Tops</a><a>Bottoms</a><a>Dresses</a><a>Shoes</a><a>Bags</a><a>Jewelry</a></nav>
+        <div class="grid">
+          <div class="cell"><svg><use href="#tank"/></svg><h4>grey ribbed tank</h4><small>clean</small></div>
+          <div class="cell dirty"><svg><use href="#knit"/></svg><h4>cream cardigan</h4><small>in the wash</small></div>
+          <div class="cell"><svg><use href="#skirt"/></svg><h4>silk slip skirt</h4><small>clean</small></div>
+          <div class="cell"><svg><use href="#jeans"/></svg><h4>vintage Levi's</h4><small>2 wears left</small></div>
+          <div class="cell"><svg><use href="#dress"/></svg><h4>black midi dress</h4><small>clean</small></div>
+          <div class="cell dirty"><svg><use href="#tank"/></svg><h4>white baby tee</h4><small>in the wash</small></div>
+          <div class="cell"><svg><use href="#jacket"/></svg><h4>denim jacket</h4><small>clean</small></div>
+          <div class="cell"><svg><use href="#heel"/></svg><h4>black slingbacks</h4><small>clean</small></div>
+          <div class="cell"><svg><use href="#bag"/></svg><h4>little black bag</h4><small>clean</small></div>
+          <div class="cell"><svg><use href="#hoops"/></svg><h4>gold hoops</h4><small>clean</small></div>
+          <div class="cell"><svg><use href="#knit"/></svg><h4>navy sweater</h4><small>4 wears left</small></div>
+          <div class="cell dirty"><svg><use href="#jeans"/></svg><h4>wide-leg trousers</h4><small>in the wash</small></div>
+        </div>
+        <p class="count">7 pieces in the wash</p>
+        <div class="fab">+</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAUNDRY -->
+  <div class="unit"><span>LAUNDRY</span>
+    <div class="phone">
+      <div class="status"><b>9:41</b><span>􀙇 􀛨</span></div>
+      <div class="masthead"><h1>ARMOIRE</h1><p>&nbsp;</p></div>
+      <div class="wrap">
+        <div class="washhead"><em>The wash</em><p>7 pieces waiting · tap what you washed</p></div>
+        <div class="washgrid">
+          <div class="cell sel"><span class="tick">✓</span><svg><use href="#knit"/></svg><h4>cream cardigan</h4><small>worn Sat</small></div>
+          <div class="cell sel"><span class="tick">✓</span><svg><use href="#tank"/></svg><h4>white baby tee</h4><small>worn Sun</small></div>
+          <div class="cell sel"><span class="tick">✓</span><svg><use href="#jeans"/></svg><h4>wide-leg trousers</h4><small>3 wears</small></div>
+          <div class="cell"><span class="tick"></span><svg><use href="#dress"/></svg><h4>slip dress</h4><small>worn Fri</small></div>
+          <div class="cell sel"><span class="tick">✓</span><svg><use href="#tank"/></svg><h4>black cami</h4><small>worn Thu</small></div>
+          <div class="cell"><span class="tick"></span><svg><use href="#knit"/></svg><h4>grey hoodie</h4><small>5 wears</small></div>
+        </div>
+        <div class="washfoot">
+          <button class="wear">DID THE LAUNDRY · 4</button>
+          <p>Last wash — Sunday. Everything came back clean.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
