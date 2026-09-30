@@ -149,6 +149,27 @@ Photos: Supabase Storage, **private bucket**, signed URLs. Photos never touch gi
 | SerpAPI Google Lens | $0 (100/mo free tier) |
 | **Total** | **~$1–3/mo** |
 
-## 11. UI direction
+## 11. UI direction — Editorial ("The Look")
 
-See `mockups/` — three candidate design directions rendered as images. Chosen direction: _TBD after selection._
+Chosen from three candidates in `mockups/`. **Canonical reference: `mockups/1-editorial-photo.html`** (rendered in `1-editorial-photo.png`) — build to match it. The app reads like a daily issue of her own style magazine: serif masthead, numbered looks, hairline grids, one red accent.
+
+### Tokens
+
+| Token | Value | Use |
+|---|---|---|
+| `--ivory` | `#F6F4EE` | app background — everything sits directly on this |
+| `--ink` | `#141210` | text, primary buttons, masthead rule |
+| `--red` | `#C1121F` | the only accent: active tab underline, "in the wash", live counts |
+| `--grey` | `#8A857C` | secondary text, captions, metadata |
+| `--line` | `#D8D4CA` | hairlines, 1px grid gutters |
+
+**Type:** Bodoni Moda (display serif) — masthead, look numbers ("Look № 3"), item names, editorial captions, italic section heads ("The wash"). Archivo (sans) — tabs, buttons, metadata. Buttons are ink blocks with letterspaced caps, zero border-radius.
+
+### Layout rules
+
+- ARMOIRE masthead letterspaced (.34em) over a 1px ink rule; grey date · weather · city line beneath.
+- Vibe picker and closet tabs are plain text links; active = ink with 2px red underline.
+- Closet: 3-column grid with 1px `--line` gutters (gap trick over a `--line` background), square photo cells, serif item name + grey status line below each.
+- Outfit plate: cutout collage centered on ivory; "why this works" set as serif magazine copy; one italic styling tip.
+- Dirty items: image grayscale at ~50% opacity + red italic "in the wash".
+- Photos: her real cutouts (transparent PNGs from bg removal) sit directly on the ivory — no cards, no borders, no shadows. (The mockup uses `mix-blend-mode: multiply` only because its placeholders are white-background JPEGs; real cutouts won't need it.)
